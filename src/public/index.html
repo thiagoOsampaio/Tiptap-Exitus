@@ -55,26 +55,37 @@
     </div>
 
     <script>
-      const defaultText = `$$x = -\\frac{b}{2a} = -\\frac{-4}{2\\cdot 2} = \\frac{4}{4} = 1$$Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita mollitia inventore maxime, eligendi esse facere laborum ut ratione temporibus beatae quibusdam dolorum placeat unde similique molestias quod deserunt magnam enim!`
+
       const exitusEditor = new ExitusEditor({
         container: document.querySelector('.element'),
-        content: defaultText,
+        content: "$$\\frac{a}{b} + c$$$$\\frac{a}{b} + c$$",
         config: {
-          image: {
-            proxyUrl: "https://us-central1-desenvolvimento-271520.cloudfunctions.net/imagem-conversao-base64/proxy",
+          mathtype: {
+            mathTypeParameters: {
+              editorParameters: {
+                fontFamily: "Arial",
+                fontStyle: "normal",
+                fontSize: "14px",
+                fonts: [{
+                  'id': 'inherit',
+                  'label': 'Arial'
+                }],
+                language: "pt_br"
+              }
+            },
+          },
+          image: {           
+            uploadServer: { server: "http://localhost:8080/upload/imagem", ignoreUrlsPrefix: ['http://cdnteste.exituseduc.com'] },
             allowBase64: true,
           },
-          initialHeight: 400,
-          toolbar:{
-            showOnFocus: true,
-          }
+          initialHeight: 400
         }
       })
 
       const exitusEditor2 = new ExitusEditor({
         container: document.querySelector('.element2'),
         editable: true,
-        content: '<colar-questao title="comando">teste</colar-questao>',
+        content: '<colar-questao title="comando">$$\frac{a}{b} + c$$$$\frac{a}{b} + c$$$$\frac{a}{b} + c$$$$\frac{a}{b} + c$$$$\frac{a}{b} + c$$</colar-questao>$$\frac{a}{b} + c$$$$\frac{a}{b} + c$$$$\frac{a}{b} + c$$$$\frac{a}{b} + c$$$$\frac{a}{b} + c$$',
       })
 
       exitusEditor.on('create', ({ editor }) => {
